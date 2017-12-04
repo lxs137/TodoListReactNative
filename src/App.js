@@ -33,10 +33,16 @@ export default class TodoApp extends Component {
   }
 
   _onModalSubmit = () => {
+    this.data_arr = this.data_arr.concat([{
+      title: this.state.newTaskTitle,
+      date: new Date().toLocaleString(),
+      is_done: false
+    }]);
     this.setState({
       isShowModal: false,
-      newTaskTitle: ''
-    })
+      newTaskTitle: '',
+      ds: this.state.ds.cloneWithRows(this.data_arr)
+    });
   }
 
   _onModalCancel = () => {
@@ -52,10 +58,23 @@ export default class TodoApp extends Component {
     });
   }
 
+  _onListItemDone = (index) => {
+    let old_obj = this.data_arr[index];
+    this.data_arr = this.data_arr.slice();
+    this.data_arr[index] = {
+      title: old_obj.title,
+      date: old_obj.date,
+      is_done: !old_obj.is_done
+    };
+    this.setState({
+      ds: this.state.ds.cloneWithRows(this.data_arr)
+    });
+  }
+
   render() {
     return (
       <View style={styles.appContainer}>
-        <TodoList dataSource={this.state.ds}></TodoList>
+        <TodoList dataSource={this.state.ds} onItemDone={this._onListItemDone}></TodoList>
         <ActionButton buttonColor="#ff5722">
           <ActionButton.Item buttonColor='#3fa0f4' title="新任务" onPress={this._onShowModal}>
             <Icon name="md-create" style={styles.actionButtonIcon} />

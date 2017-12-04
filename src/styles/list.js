@@ -32,5 +32,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingRight: 20,
     backgroundColor: '#32db64'
+  },
+  doneBackground: {
+    backgroundColor: '#32db64'
+  },
+  notDoneBackground: {
+    backgroundColor: '#ff5722'
   }
 });
