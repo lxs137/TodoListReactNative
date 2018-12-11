@@ -13,7 +13,9 @@ export default class TodoItem extends Component {
     const { title, date, is_done } = this.props.data;
     return (
       <Swipeable leftContent={<LeftContent is_done={is_done}></LeftContent>}
-        onLeftActionRelease={() => this.props.onItemDone(this.props.index)}>
+        onLeftActionRelease={() => this.props.onItemDone(this.props.index)}
+        rightContent={<RightContent></RightContent>}
+        onRightActionRelease={() => this.props.onItemRemove(this.props.index)}>
         <View style={styles.itemContainer}>
           <View style={styles.contentContainer}>
             <Text style={styles.itemTitle}>{title}</Text>
@@ -37,6 +39,16 @@ class LeftContent extends Component {
         styles.leftSwipeItem, 
         this.props.is_done ? styles.notDoneBackground : styles.doneBackground]}>
         <Text>{this.props.is_done ? 'NotDone' : 'Done'}</Text>
+      </View>
+    )
+  }
+}
+
+class RightContent extends Component {
+  render() {
+    return (
+      <View style={styles.rightSwipeItem}>
+        <Text>{'Delete'}</Text>
       </View>
     )
   }

@@ -38,5 +38,12 @@ export const styles = StyleSheet.create({
   },
   notDoneBackground: {
     backgroundColor: '#ff5722'
+  },
+  rightSwipeItem: {
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingLeft: 20,
+    backgroundColor: '#ff5722'
   }
 });

@@ -71,10 +71,18 @@ export default class TodoApp extends Component {
     });
   }
 
+  _onListItemRemove = (index) => {
+    this.data_arr = this.data_arr.slice();
+    this.data_arr.splice(index, 1);
+    this.setState({
+      ds: this.state.ds.cloneWithRows(this.data_arr)
+    });    
+  }
+
   render() {
     return (
       <View style={styles.appContainer}>
-        <TodoList dataSource={this.state.ds} onItemDone={this._onListItemDone}></TodoList>
+        <TodoList dataSource={this.state.ds} onItemDone={this._onListItemDone} onItemRemove={this._onListItemRemove}></TodoList>
         <ActionButton buttonColor="#ff5722">
           <ActionButton.Item buttonColor='#3fa0f4' title="新任务" onPress={this._onShowModal}>
             <Icon name="md-create" style={styles.actionButtonIcon} />

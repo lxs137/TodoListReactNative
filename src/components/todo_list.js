@@ -15,6 +15,7 @@ export default class TodoList extends Component {
           <TodoItem
             data={data}
             index={rowID}
+            onItemRemove={this.props.onItemRemove}
             onItemDone={this.props.onItemDone}></TodoItem>
         )}
       />
